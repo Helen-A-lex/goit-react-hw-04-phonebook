@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { GlobalStyle } from '../GlobalStyle';
 import { Title } from './App.styled';
@@ -7,28 +7,38 @@ import { ContactList } from '../ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
 import { Layout } from '../Layout';
 const LS_KEY = 'contacts';
-export class App extends Component {
-  state = {
-    contacts: [],
-    filter: "",
-  };
+export default function App ()  {
+  // state = {
+  //   contacts: [],
+  //   filter: "",
+  // };
+const [contacts, setContacts] = useState(() => {
+    return JSON.parse(localStorage.getItem(LS_KEY)) ?? "";
+});
+const [filter, setFilter] = useState('');
 
-  componentDidMount() {
-    const savedContacts = localStorage.getItem(LS_KEY);
-    if (savedContacts !== null) {
-      const parsedContacts = JSON.parse(savedContacts);
-      this.setState({ contacts: parsedContacts });
-      return;
-    }
-    this.setState({ contacts: [] });
-  }
+  // componentDidMount() {
+  //   const savedContacts = localStorage.getItem(LS_KEY);
+  //   if (savedContacts !== null) {
+  //     const parsedContacts = JSON.parse(savedContacts);
+  //     this.setState({ contacts: parsedContacts });
+  //     return;
+  //   }
+  //   this.setState({ contacts: [] });
+  // }
+  
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
-    }
-  }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.contacts !== this.state.contacts) {
+  //     localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+  //   }
+  // }
+useEffect(() => {
+  localStorage.setItem(LS_KEY, JSON.stringify(contacts));
+}, [contacts])
+  
+  
   formSubmitHandle = ({ name, number }) => {
     const { contacts } = this.state;
     const isDuplicateName = contacts.some(
