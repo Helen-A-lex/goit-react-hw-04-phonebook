@@ -10,7 +10,7 @@ const LS_KEY = 'contacts';
 export class App extends Component {
   state = {
     contacts: [],
-    filter: '',
+    filter: "",
   };
 
   componentDidMount() {
