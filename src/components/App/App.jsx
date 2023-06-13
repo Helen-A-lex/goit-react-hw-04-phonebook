@@ -39,7 +39,7 @@ useEffect(() => {
 }, [contacts])
   
   
-  const formSubmitHandle = ({ name, number }) => {
+  const formSubmitHandle = ( name, number ) => {
     // const { contacts } = this.state;
     const isDuplicateName = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -55,33 +55,42 @@ useEffect(() => {
       // this.setState(prevState => ({
       //   contacts: [contact, ...prevState.contacts],
       // }));
-      setContacts(prevState => [contact, ...prevState.contacts]);
+      setContacts(prevStateContacts => [contact, ...prevStateContacts]);
     }
   };
   
   const changeFilter = evt => {
     // this.setState({ filter: evt.currentTarget.value });
-    setFilter(evt.currentTarget.value);
+    return setFilter(evt.currentTarget.value);
     }
   };
 
-  const getFilteredContacts = (filter,contacts) => {
-    // const { filter, contacts } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-    if (filter) {
-      return contacts.filter(contact =>
-        contact.name.toLowerCase().includes(normalizedFilter)
-      );
-    } else {
-      return contacts;
-    }
-  };
+//   function getFilteredContacts(filter, contacts) {
+//   // const { filter, contacts } = this.state;
+//   const normalizedFilter = filter.toLowerCase();
+//   if (filter) {
+//     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter)
+//     );
+//   } else {
+//     return contacts;
+//   }
+// }
+const getFilteredContacts = (filter, contacts) => {
+  const normalizedFilter = filter.toLowerCase();
+  if (filter) {
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  } else {
+    return contacts;
+  }
+  
+}
 
   const deleteContact = contactId => {
     // this.setState(prevState => ({
     //   contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     // }));
-    setContacts(prevState => prevState.contacts.filter(contact => contact.id !== contactId))
+    setContacts(prevStateContacts => prevStateContacts.filter(contact => contact.id !== contactId))
   };
 
   
