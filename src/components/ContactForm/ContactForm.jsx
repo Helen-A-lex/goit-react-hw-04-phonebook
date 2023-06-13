@@ -6,7 +6,7 @@ import {
   ButtonAddDeleteContact,
 } from './ContactForm.styled';
 
-export default function ContactForm() {
+export default function ContactForm({onSubmit}) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -27,12 +27,13 @@ export default function ContactForm() {
 //   const handleSubmit = evt => {
 //     evt.preventDefault();
 
-//     this.props.onSubmit(this.state);
-//     this.reset();
+//     onSubmit(this.state);
+//     reset();
 //   };
 
 //   reset = () => {
-//     this.setState({ name: '', number: '' });
+//     setName('');
+  // setNumber("")
 //   };
 
   return (
