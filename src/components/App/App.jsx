@@ -16,16 +16,6 @@ export default function App() {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
-  // componentDidMount() {
-  //   const savedContacts = localStorage.getItem(LS_KEY);
-  //   if (savedContacts !== null) {
-  //     const parsedContacts = JSON.parse(savedContacts);
-  //     this.setState({ contacts: parsedContacts });
-  //     return;
-  //   }
-  //   this.setState({ contacts: [] });
-  // }
-
   useEffect(() => {
     const savedContacts = localStorage.getItem(LS_KEY);
     if (savedContacts !== null) {
@@ -36,11 +26,6 @@ export default function App() {
     setContacts([]);
   }, []);
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.contacts !== this.state.contacts) {
-  //     localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
-  //   }
-  // }
   useEffect(() => {
     localStorage.setItem(LS_KEY, JSON.stringify(contacts));
   }, [contacts]);
