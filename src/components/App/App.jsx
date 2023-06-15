@@ -23,7 +23,7 @@ export default function App() {
       setContacts(parsedContacts);
       return;
     }
-    setContacts([]);
+    
   }, []);
 
   useEffect(() => {
